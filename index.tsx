@@ -24,6 +24,7 @@ import {
   Send,
   Sparkles,
   Ticket,
+  Package,
   ChevronDown,
   DollarSign,
   Terminal,
@@ -157,7 +158,7 @@ const Badge = ({ children, color = "blue" }: { children?: React.ReactNode; color
   );
 };
 
-export function NovaHubApp() {
+export function PrakasaAPIApp() {
   const [lang, setLang] = useState<'zh' | 'en'>('zh');
   const [view, setView] = useState<View>('home');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -170,6 +171,7 @@ export function NovaHubApp() {
   const [playgroundMessages, setPlaygroundMessages] = useState<{ role: string; content: string }[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [rechargeCurrency, setRechargeCurrency] = useState<'USD' | 'CNY'>('USD');
 
   const t = {
     zh: {
@@ -195,14 +197,14 @@ export function NovaHubApp() {
       adv3_desc: "100% 兼容 OpenAI 协议。无需修改逻辑，仅需替换 URL 和 Key。支持 LangChain, Cursor 等所有生态工具。",
       showcase_headline: "赋能下个世代的",
       showcase_headline_sub: "AI 驱动型开发体验",
-      showcase_desc: "彻底告别复杂的跨境支付与账号封禁风险。NovaHub 为追求极致效率的开发者提供稳定、高并发的模型接入能力，让 Claude 4.5 与 GPT-4o 成为你编程时的最强辅助，让每一行代码都充满灵感。",
+      showcase_desc: "彻底告别复杂的跨境支付与账号封禁风险。Prakasa API 为追求极致效率的开发者提供稳定、高并发的模型接入能力，让 Claude 4.5 与 GPT-4o 成为你编程时的最强辅助，让每一行代码都充满灵感。",
       pricing_headline: "选择最适合您的订阅计划",
       pricing_subheadline: "按量付费或选择月度订阅，享受更高折扣与专属通道",
       pricing_tab_paygo: "按量付费",
       pricing_tab_sub: "包月订阅",
       sub_pro_label: "Pro 开发者版",
       sub_pro_target: "个人开发者 / 沉浸式翻译用户",
-      sub_pro_price: "$ 28.00",
+      sub_pro_price: "$ 48.00",
       sub_pro_unit: "/月",
       sub_pro_f1: "每日 $25.00 额度 (月总价值 $750)",
       sub_pro_f2: "每 5 小时可用 $12.50 额度",
@@ -211,7 +213,7 @@ export function NovaHubApp() {
       sub_pro_f5: "标准 API 并发通道支持",
       sub_max_label: "Max 极速版",
       sub_max_target: "全职程序员 / 高频重度开发",
-      sub_max_price: "$ 50.00",
+      sub_max_price: "$ 98.00",
       sub_max_unit: "/月",
       sub_max_f1: "每日 $40.00 额度 (月总价值 $1200)",
       sub_max_f2: "每 5 小时可用 $20.00 额度",
@@ -220,7 +222,7 @@ export function NovaHubApp() {
       sub_max_f5: "优先 API 并发队列支持",
       sub_team_label: "Ultra 企业版",
       sub_team_target: "工作室 / 7x24小时自动化任务",
-      sub_team_price: "$ 98.00",
+      sub_team_price: "$ 198.00",
       sub_team_unit: "/月",
       sub_team_f1: "每日 $100.00 额度 (月总价值 $3000)",
       sub_team_f2: "每 5 小时可用 $50.00 额度",
@@ -255,8 +257,8 @@ export function NovaHubApp() {
       paygo_c4_f3: "仅支持 Claude 4.5 & Codex 5.1 & Gemini 3系列",
       paygo_c4_f4: "企业级专属高速通道支持",
       paygo_c4_f5: "",
-      pricing_cta_recharge: "立即充值",
-      pricing_paygo_label: "按量付费计费",
+      pricing_cta_recharge: "立即购买",
+      pricing_paygo_label: "以下价格仅针对按量付费计费，订阅套餐参考套餐价格",
       pricing_paygo_start: "起",
       showcase_f1: "国内直连，毫秒级响应",
       showcase_f2: "模型全面，一键无缝切换",
@@ -267,6 +269,7 @@ export function NovaHubApp() {
       sub_standard_concurrency: "标准 API 并发支持",
       sub_cta_subscribe: "立即订阅",
       sub_cta_team: "立即订阅",
+      dash_welcome: "欢迎回来！",
       dash_welcome_sub: "修改 Base URL 并替换 API Key 即可使用 100+ AI 模型",
       dash_base_url: "接口地址",
       dash_api_key: "API 密钥",
@@ -277,10 +280,11 @@ export function NovaHubApp() {
       dash_card_redeem: "卡密兑换",
       dash_redeem_desc: "输入16位卡密以激活您的账户额度。",
       dash_activate: "激活",
-      dash_model_market: "模型广场",
+      dash_model_market: "模型列表",
       dash_price_per_m: "价格 / 1M Token",
+      pricing_view_all_models: "查看全部模型价格",
       dash_playground_title: "在线调试 Playground",
-      dash_playground_desc: "在此免费体验 NovaHub 代理的模型性能，国内直连秒开。",
+      dash_playground_desc: "在此免费体验 Prakasa API 代理的模型性能，国内直连秒开。",
       dash_thinking: "思考中...",
       dash_input_placeholder: "输入消息，即刻开始调试...",
       dash_logs_title: "调用日志",
@@ -295,6 +299,32 @@ export function NovaHubApp() {
       dash_stat_latency: "系统平均延迟",
       dash_stat_balance: "可用总额度",
       dash_token_manage: "令牌管理",
+      dash_balance_title: "当前余额",
+      dash_sub_balance: "订阅额度",
+      dash_sub_balance_desc: "优先使用，套餐到期后清零",
+      dash_paygo_balance: "按量余额",
+      dash_paygo_balance_desc: "永久有效",
+      dash_subscription_title: "当前订阅",
+      dash_no_subscription: "暂无订阅",
+      dash_redeem_code: "选购套餐",
+      dash_recharge_now: "立即充值",
+      dash_promo_badge: "首充优惠",
+      dash_account_balance_title: "余额",
+      dash_recharge_online_title: "在线充值",
+      dash_recharge_amount_placeholder_usd: "输入美元金额 (Min. $1.00)",
+      dash_recharge_amount_placeholder_cny: "输入人民币金额 (Min. ¥7.00)",
+      dash_recharge_method_alipay: "支付宝支付",
+      dash_recharge_method_usdt: "数字货币",
+      dash_recharge_reminder_title: "充值须知",
+      dash_recharge_reminder_1: "1. 充值实时到账，余额永久有效，不支持退款。",
+      dash_recharge_reminder_2: "2. 请确保支付金额与输入金额一致。",
+      dash_recharge_records_title: "充值记录",
+      dash_th_order_id: "订单编号",
+      dash_th_recharge_amount: "充值金额",
+      dash_th_payment_amount: "实付金额",
+      dash_th_payment_method: "支付方式",
+      dash_th_created_at: "创建时间",
+      dash_no_data: "暂无数据",
       dash_th_name: "名称 & 密钥",
       dash_th_status: "状态",
       dash_th_quota: "额度",
@@ -302,26 +332,18 @@ export function NovaHubApp() {
       dash_market_th_model: "模型名称 / 提供商",
       dash_market_th_tags: "标签",
       dash_market_th_multiplier: "计费倍率",
-      dash_market_th_price: "价格 ($/1M)",
+      dash_market_th_official_price: "官方价格 ($/1M)",
+      dash_market_th_our_price: "我们的价格 ($1M)",
       dash_market_th_action: "测试",
-      dash_billing_title: "财务资产",
-      dash_balance_title: "当前余额",
-      dash_subscription_title: "当前订阅计划",
-      dash_recharge_now: "立即充值",
-      dash_promo_badge: "首充特惠",
-      dash_sub_balance: "订阅额度",
-      dash_sub_balance_desc: "优先扣除，到期清零",
-      dash_paygo_balance: "按量余额",
-      dash_paygo_balance_desc: "永久有效",
-      dash_redeem_code: "兑换码激活",
       nav_dash_overview: "总览面板",
       nav_dash_tokens: "令牌管理",
-      nav_dash_billing: "财务中心",
-      nav_dash_models: "模型广场",
+      nav_dash_plans: "订阅套餐",
+      nav_dash_billing: "余额充值",
+      nav_dash_models: "模型列表",
       nav_dash_playground: "在线调试",
       nav_dash_logs: "调用日志",
-      nav_dash_settings: "偏好设置",
       nav_dash_logout: "退出登录",
+      nav_dash_settings: "设置",
       model_desc_gpt: "旗舰全能模型",
       model_desc_claude: "顶尖推理能力",
       model_desc_deepseek: "极致性价比之王",
@@ -364,7 +386,7 @@ export function NovaHubApp() {
       adv3_desc: "100% OpenAI protocol compatible. Just swap Base URL and Key. Works with LangChain & Cursor.",
       showcase_headline: "Empowering Next-Gen",
       showcase_headline_sub: "AI-Driven Engineering",
-      showcase_desc: "Say goodbye to complex cross-border payments and ban risks. NovaHub provides stable, high-concurrency access for elite developers.",
+      showcase_desc: "Say goodbye to complex cross-border payments and ban risks. Prakasa API provides stable, high-concurrency access for elite developers.",
       pricing_headline: "Choose Your Perfect Plan",
       pricing_subheadline: "Pay-as-you-go or monthly subscription for higher discounts and dedicated lanes.",
       badge_popular: "🔥 Popular",
@@ -381,10 +403,11 @@ export function NovaHubApp() {
       dash_card_redeem: "Redeem Card",
       dash_redeem_desc: "Enter 16-digit code to activate credit.",
       dash_activate: "Activate",
-      dash_model_market: "Model Market",
+      dash_model_market: "Model List",
       dash_price_per_m: "Price / 1M Tokens",
+      pricing_view_all_models: "View All Model Prices",
       dash_playground_title: "Playground",
-      dash_playground_desc: "Test NovaHub models for free with direct connection.",
+      dash_playground_desc: "Test Prakasa API models for free with direct connection.",
       dash_thinking: "Thinking...",
       dash_input_placeholder: "Type a message...",
       dash_logs_title: "Logs",
@@ -402,21 +425,22 @@ export function NovaHubApp() {
       dash_sub_balance_desc: "Priority use, expires after plan ends",
       dash_paygo_balance: "Pay-As-You-Go",
       dash_paygo_balance_desc: "Never expires",
-      dash_redeem_code: "Redeem Code",
+      dash_redeem_code: "Select Plan",
+      dash_no_subscription: "None",
       showcase_f1: "Direct connection, ms response",
       showcase_f2: "Global models, 1-click switch",
       showcase_f3: "Pay-as-you-go, affordable",
       showcase_f4: "Perfect sync for Cursor/VSCode",
       pricing_tab_paygo: "Pay-As-You-Go",
       pricing_tab_sub: "Subscription",
-      pricing_paygo_label: "Pay-As-You-Go",
+      pricing_paygo_label: "Prices below apply only to pay-as-you-go billing; see plans for subscription pricing",
       pricing_paygo_start: "Start",
       pricing_pro_label: "Pro Plan",
       pricing_max_label: "Team Plan",
       pricing_ultra_label: "Enterprise Plan",
       sub_pro_label: "Pro Developer",
       sub_pro_target: "Individual Developers / Immersive Translate Users",
-      sub_pro_price: "$ 28.00",
+      sub_pro_price: "$ 48.00",
       sub_pro_unit: "/mo",
       sub_pro_f1: "Daily $25.00 quota ($750/mo value)",
       sub_pro_f2: "Available $12.50 every 5 hours",
@@ -425,7 +449,7 @@ export function NovaHubApp() {
       sub_pro_f5: "Standard API Concurrency Lane",
       sub_max_label: "Max Speed",
       sub_max_target: "Full-time Programmers / Heavy Development",
-      sub_max_price: "$ 50.00",
+      sub_max_price: "$ 98.00",
       sub_max_unit: "/mo",
       sub_max_f1: "Daily $40.00 quota ($1200/mo value)",
       sub_max_f2: "Available $20.00 every 5 hours",
@@ -434,7 +458,7 @@ export function NovaHubApp() {
       sub_max_f5: "Priority API Concurrency Queue",
       sub_team_label: "Ultra Enterprise",
       sub_team_target: "Studios / 7x24 Automation",
-      sub_team_price: "$ 98.00",
+      sub_team_price: "$ 198.00",
       sub_team_unit: "/mo",
       sub_team_f1: "Daily $100.00 quota ($3000/mo value)",
       sub_team_f2: "Available $50.00 every 5 hours",
@@ -469,30 +493,18 @@ export function NovaHubApp() {
       paygo_c4_f3: "Supports Claude 4.5 / Codex / Gemini 3 series",
       paygo_c4_f4: "Enterprise High Speed Lane",
       paygo_c4_f5: "",
-      pricing_cta_recharge: "Recharge now",
-      dash_stat_calls: "Calls Today",
-      dash_stat_tokens: "Tokens (Month)",
-      dash_stat_latency: "Avg Latency",
-      dash_stat_balance: "Total Balance",
-      dash_token_manage: "Token Management",
-      dash_th_name: "Name & Key",
-      dash_th_status: "Status",
-      dash_th_quota: "Quota",
-      dash_th_action: "Action",
-      dash_market_th_model: "Model / Provider",
-      dash_market_th_tags: "Tags",
-      dash_market_th_multiplier: "Multiplier",
-      dash_market_th_price: "Price ($/1M)",
-      dash_market_th_action: "Try",
-      dash_billing_title: "Billing & Assets",
-      nav_dash_overview: "Overview",
+      pricing_cta_recharge: "Buy Now",
+      nav_dash_overview: "Dashboard ",
       nav_dash_tokens: "Tokens",
-      nav_dash_billing: "Billing",
+      nav_dash_plans: "Subscription Plans",
+      nav_dash_billing: "Top-up",
       nav_dash_models: "Models",
       nav_dash_playground: "Playground",
       nav_dash_logs: "Logs",
-      nav_dash_settings: "Settings",
       nav_dash_logout: "Logout",
+      dash_currency_usd: "USD",
+      dash_currency_cny: "CNY",
+      nav_dash_settings: "Settings",
       model_desc_gpt: "Flagship versatile model",
       model_desc_claude: "Top-tier reasoning",
       model_desc_deepseek: "Best value of-all-time",
@@ -511,6 +523,8 @@ export function NovaHubApp() {
       status_busy: "Busy",
       status_offline: "Offline",
       mock_token_name: "Production-MainKey",
+      sub_cta_subscribe: "Subscribe Now",
+      sub_cta_team: "Subscribe Now",
     }
   }[lang];
 
@@ -554,10 +568,10 @@ export function NovaHubApp() {
         {/* Navbar */}
         <nav className="fixed top-0 left-0 right-0 z-50 glass-morphism h-20 px-10 flex items-center justify-between border-b border-slate-100/30">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#2563EB] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+            <div className="w-10 h-10 bg-[#2563EB] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 shrink-0">
               <Zap size={22} fill="white" />
             </div>
-            <span className="text-2xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
+            <span className="text-2xl font-black text-slate-800 tracking-tighter italic">Prakasa API</span>
           </div>
           <div className="hidden lg:flex items-center gap-10 text-sm font-bold text-slate-600">
             <a href="#" className="hover:text-blue-600 transition-colors">{t.nav_home}</a>
@@ -588,7 +602,7 @@ export function NovaHubApp() {
           <div className="max-w-7xl mx-auto px-10 flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="lg:w-1/2 space-y-10 z-10">
               <div className="space-y-6">
-                <h2 className="text-xl font-black text-blue-600">NovaHub AI Platform</h2>
+                <h2 className="text-xl font-black text-blue-600">Prakasa API Platform</h2>
                 <h1 className="text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter">
                   {t.hero_headline}<br />
                   <span className="text-blue-600">{t.hero_subline}</span>
@@ -605,9 +619,12 @@ export function NovaHubApp() {
                   <span className="text-xl font-black mb-1">{t.hero_cta_start}</span>
                   <span className="text-[11px] font-bold opacity-70">{t.hero_cta_bonus}</span>
                 </button>
-                <button className="flex-1 sm:flex-initial flex items-center justify-center px-10 py-5 bg-white text-slate-700 border-2 border-slate-100 rounded-2xl text-lg font-black hover:bg-slate-50 hover:border-slate-200 transition-all">
+                <a
+                  href="#pricing"
+                  className="flex-1 sm:flex-initial flex items-center justify-center px-10 py-5 bg-white text-slate-700 border-2 border-slate-100 rounded-2xl text-lg font-black hover:bg-slate-50 hover:border-slate-200 transition-all text-center"
+                >
                   {t.hero_cta_pricing}
-                </button>
+                </a>
               </div>
 
               {/* Trust Bar */}
@@ -669,21 +686,47 @@ export function NovaHubApp() {
                       <path d="M0 200 Q 200 250 400 100 T 600 200" stroke="url(#line-grad)" strokeWidth="2" fill="none" />
                     </svg>
 
-                    {/* Dynamic Stats/Info Nodes */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative grid grid-cols-2 gap-4 p-8 w-full">
-                        {[1, 2, 3, 4].map(i => (
-                          <div key={i} className="h-24 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm p-4 flex flex-col justify-between">
-                            <div className="h-2 w-12 bg-white/20 rounded-full"></div>
-                            <div className="h-4 w-full bg-white/10 rounded-lg"></div>
-                            <div className="flex gap-2">
-                              <div className="h-1.5 w-full bg-blue-500/30 rounded-full overflow-hidden">
-                                <div className={`h-full bg-blue-500 rounded-full animate-[loading_2s_ease-in-out_infinite]`} style={{ width: `${30 + i * 15}%` }}></div>
+                    {/* Model Scrolling Stream */}
+                    <div className="absolute inset-0 flex items-center justify-center p-8">
+                      <div className="relative w-full h-full overflow-hidden mask-fade-edges">
+                        <div className="flex flex-col gap-4 animate-vertical-scroll p-4">
+                          {[
+                            { name: 'GPT-4o', color: 'from-emerald-400 to-cyan-400' },
+                            { name: 'Claude 4.5', color: 'from-orange-400 to-amber-400' },
+                            { name: 'Gemini 1.5 Pro', color: 'from-blue-400 to-indigo-400' },
+                            { name: 'DeepSeek V3', color: 'from-slate-400 to-slate-600' },
+                            { name: 'Llama 3.1 405B', color: 'from-purple-400 to-pink-400' },
+                            { name: 'Codex 5.1', color: 'from-blue-500 to-teal-400' },
+                            { name: 'Stable Diffusion 3', color: 'from-rose-400 to-pink-400' },
+                            { name: 'GPT-4o', color: 'from-emerald-400 to-cyan-400' },
+                            { name: 'Claude 4.5', color: 'from-orange-400 to-amber-400' },
+                            { name: 'Gemini 1.5 Pro', color: 'from-blue-400 to-indigo-400' },
+                            { name: 'DeepSeek V3', color: 'from-slate-400 to-slate-600' },
+                            { name: 'Llama 3.1 405B', color: 'from-purple-400 to-pink-400' },
+                            { name: 'Codex 5.1', color: 'from-blue-500 to-teal-400' },
+                            { name: 'Stable Diffusion 3', color: 'from-rose-400 to-pink-400' },
+                          ].map((model, i) => (
+                            <div
+                              key={i}
+                              className={`h-20 shrink-0 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-4 flex items-center gap-6 transition-all duration-500 hover:bg-white/10 group/item ${i % 7 === 1 ? 'model-highlight scale-110 bg-white/10 border-blue-500/50' : ''}`}
+                            >
+                              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${model.color} flex items-center justify-center shadow-lg`}>
+                                <Sparkles size={20} className="text-white" />
+                              </div>
+                              <div className="flex-1">
+                                <p className="text-white font-black text-lg tracking-tight group-hover/item:text-blue-400 transition-colors">{model.name}</p>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none">Ready to Serve</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
+
+                      {/* Gradient Overlays for smooth fading */}
+                      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#0B0F1A] via-transparent to-[#0B0F1A] opacity-80"></div>
                     </div>
                   </div>
                 </div>
@@ -694,8 +737,8 @@ export function NovaHubApp() {
                     <Sparkles size={24} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-slate-400">Active Model</p>
-                    <p className="font-black text-slate-900 text-lg">Claude Code</p>
+                    <p className="text-[10px] font-black text-slate-400">Supported Models</p>
+                    <p className="font-black text-slate-900 text-3xl">100+</p>
                   </div>
                 </div>
 
@@ -1037,7 +1080,7 @@ export function NovaHubApp() {
                         <span className="text-slate-700">{t.sub_pro_f5}</span>
                       </li>
                     </ul>
-                    <button className="w-full py-4 bg-white text-slate-400 border-2 border-slate-100 rounded-2xl font-black hover:border-blue-600 hover:text-blue-600 transition-all active:scale-95">
+                    <button className="w-full py-4 bg-slate-50 text-slate-600 border-2 border-slate-100 rounded-2xl font-black hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all active:scale-95 shadow-sm">
                       {t.sub_cta_subscribe}
                     </button>
                   </Card>
@@ -1077,7 +1120,7 @@ export function NovaHubApp() {
                         <span className="text-slate-700">{t.sub_max_f5}</span>
                       </li>
                     </ul>
-                    <button className="w-full py-4 bg-blue-600 text-white rounded-2xl font-black hover:bg-blue-700 transition-all shadow-lg active:scale-95">
+                    <button className="w-full py-4 bg-blue-600 text-white rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 active:scale-95">
                       {t.sub_cta_subscribe}
                     </button>
                   </Card>
@@ -1114,7 +1157,7 @@ export function NovaHubApp() {
                         <span className="text-slate-900 font-black italic tracking-tight">{t.sub_team_f5}</span>
                       </li>
                     </ul>
-                    <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-black transition-all shadow-lg active:scale-95">
+                    <button className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-black transition-all shadow-xl active:scale-95">
                       {t.sub_cta_team}
                     </button>
                   </Card>
@@ -1122,7 +1165,17 @@ export function NovaHubApp() {
               )}
             </div>
 
-            <div className="mt-16 text-center text-slate-400 font-bold text-sm">
+            <div className="mt-14 text-center">
+              <button
+                onClick={() => { setIsLoggedIn(true); setView('models'); }}
+                className="inline-flex items-center gap-2 px-8 py-3 bg-blue-50 text-blue-600 rounded-xl font-black transition-all hover:bg-blue-600 hover:text-white group shadow-sm active:scale-95"
+              >
+                {t.pricing_view_all_models}
+                <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            <div className="mt-14 text-center text-slate-400 font-bold text-sm">
               {t.footer_trust}
             </div>
           </div>
@@ -1133,9 +1186,9 @@ export function NovaHubApp() {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-[#2563EB] rounded-lg flex items-center justify-center text-white"><Zap size={18} fill="white" /></div>
-              <span className="text-xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
+              <span className="text-xl font-black text-slate-800 tracking-tighter italic">Prakasa API</span>
             </div>
-            <p className="text-sm">© 2026 NovaHub AI Cloud Platform. All rights reserved.</p>
+            <p className="text-sm">© 2026 Prakasa API Cloud Platform. All rights reserved.</p>
             <div className="flex gap-8 text-sm">
               <a href="#" className="hover:text-blue-600">Privacy</a>
               <a href="#" className="hover:text-blue-600">Terms</a>
@@ -1154,17 +1207,16 @@ export function NovaHubApp() {
           <div className="w-10 h-10 bg-[#2563EB] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
             <Zap size={20} fill="white" />
           </div>
-          <span className="text-2xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
+          <span className="text-2xl font-black text-slate-800 tracking-tighter italic">Prakasa API</span>
         </div>
         <nav className="flex-1 px-6 space-y-1 overflow-y-auto mt-4">
           {[
             { id: 'dashboard', icon: LayoutDashboard, label: t.nav_dash_overview },
             { id: 'tokens', icon: Key, label: t.nav_dash_tokens },
+            { id: 'plans', icon: Package, label: t.nav_dash_plans },
             { id: 'billing', icon: CreditCard, label: t.nav_dash_billing },
             { id: 'models', icon: Cpu, label: t.nav_dash_models },
             { id: 'playground', icon: Sparkles, label: t.nav_dash_playground },
-            { id: 'logs', icon: History, label: t.nav_dash_logs },
-            { id: 'settings', icon: Settings, label: t.nav_dash_settings },
           ].map(item => (
             <button
               key={item.id}
@@ -1194,17 +1246,23 @@ export function NovaHubApp() {
       </aside>
 
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="h-20 glass-morphism border-b border-slate-100 flex items-center justify-between px-10 shrink-0 sticky top-0 z-20">
-          <h2 className="text-xl font-black text-slate-800">{view.charAt(0).toUpperCase() + view.slice(1)}</h2>
-          <div className="w-11 h-11 bg-blue-100 text-[#2563EB] rounded-2xl flex items-center justify-center font-black">NU</div>
+        <header className="h-20 glass-morphism border-b border-slate-100 flex items-center px-10 shrink-0 sticky top-0 z-20">
+          <h2 className="text-xl font-black text-slate-800">
+            {view === 'dashboard' ? t.nav_dash_overview :
+              view === 'tokens' ? t.nav_dash_tokens :
+                view === 'plans' ? t.nav_dash_plans :
+                  view === 'billing' ? t.nav_dash_billing :
+                    view === 'models' ? t.nav_dash_models :
+                      view === 'playground' ? t.nav_dash_playground : view}
+          </h2>
         </header>
 
         <div className="flex-1 overflow-y-auto bg-slate-50/30">
           {view === 'dashboard' && <DashboardContent />}
           {view === 'tokens' && <TokensView />}
+          {view === 'plans' && <PlansView />}
           {view === 'billing' && <BillingView />}
           {view === 'models' && <ModelsView />}
-          {view === 'logs' && <LogsView />}
           {view === 'playground' && <PlaygroundView />}
           {view === 'settings' && <div className="p-20 text-center text-slate-400 font-bold">{t.settings_coming_soon}</div>}
         </div>
@@ -1299,7 +1357,7 @@ export function NovaHubApp() {
           </div>
           <div className="p-8 flex-1 flex flex-col justify-center gap-8">
             <div className="border-b border-slate-50 pb-8">
-              <span className="text-4xl font-black text-[#1e293b] tracking-tighter italic">FREE</span>
+              <span className="text-4xl font-black text-[#1e293b] tracking-tighter italic">{t.dash_no_subscription}</span>
             </div>
             <button className="w-full py-4 bg-[#2563EB] text-white rounded-2xl font-black shadow-lg shadow-blue-100 hover:bg-blue-600 hover:-translate-y-0.5 transition-all">
               {t.dash_redeem_code}
@@ -1349,7 +1407,7 @@ export function NovaHubApp() {
             {tokens.map(token => (
               <tr key={token.id} className="hover:bg-slate-50/50">
                 <td className="px-8 py-6">
-                  <p className="font-black text-slate-800">{t[token.name] || token.name}</p>
+                  <p className="font-black text-slate-800">{token.name === 'mock_token_name' ? t.mock_token_name : token.name}</p>
                   <code className="text-xs text-slate-400">{token.key}</code>
                 </td>
                 <td className="px-8 py-6"><Badge color="green">{t[`status_${token.status}`] || token.status}</Badge></td>
@@ -1363,46 +1421,304 @@ export function NovaHubApp() {
           </tbody>
         </table>
       </Card>
+
+      <div className="pt-8">
+        <h3 className="text-2xl font-black text-slate-800 mb-6">{t.dash_logs_title}</h3>
+        <Card className="overflow-hidden border-none shadow-xl">
+          <table className="w-full text-left">
+            <thead className="bg-slate-50 border-b border-slate-100">
+              <tr className="text-[11px] font-black text-slate-400">
+                <th className="px-8 py-5">{t.dash_time}</th>
+                <th className="px-8 py-5">{t.dash_model}</th>
+                <th className="px-8 py-5">{t.dash_token_usage}</th>
+                <th className="px-8 py-5 text-right">{t.dash_cost}</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {MOCK_LOGS.map(log => (
+                <tr key={log.id} className="hover:bg-slate-50/50">
+                  <td className="px-8 py-6 text-sm font-bold text-slate-400">{log.time}</td>
+                  <td className="px-8 py-6 font-black text-slate-800">{log.model}</td>
+                  <td className="px-8 py-6 font-bold text-slate-600">{log.tokens.toLocaleString()}</td>
+                  <td className="px-8 py-6 text-right font-black text-blue-600">${log.cost.toFixed(4)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const PlansView = () => (
+    <div className="p-10 space-y-8 max-w-7xl mx-auto">
+      <div className="bg-amber-50 border border-amber-100 p-4 rounded-2xl flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 shrink-0">
+          <Info size={16} />
+        </div>
+        <p className="text-xs font-black text-amber-700">
+          {lang === 'zh'
+            ? '重要提示：所有套餐仅支持 Claude 4.5 & Codex 5.1 & Gemini 3 系列模型调用。'
+            : 'Notice: All plans only support Claude 4.5 & Codex 5.1 & Gemini 3 series models.'}
+        </p>
+      </div>
+
+      {/* Section 1: Pay-as-you-go */}
+      <section>
+        <div className="mb-4 text-left">
+          <h3 className="text-2xl font-black text-slate-800">{t.pricing_tab_paygo}</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Card 2: Light Pack */}
+          <Card className="p-7 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border shadow-sm">
+            <div className="mb-4 text-left">
+              <h3 className="text-xl font-black mb-1 text-slate-800 flex items-center gap-2 italic leading-tight">{t.paygo_c2_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px]">{t.pricing_paygo_label}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-1 text-left">
+              <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c2_price}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.paygo_c2_f1, t.paygo_c2_f2, t.paygo_c2_f3, t.paygo_c2_f4].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : "text-slate-600"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-slate-50 text-slate-600 border-2 border-slate-100 rounded-xl font-black text-sm hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all shadow-sm active:scale-95">
+              {t.pricing_cta_recharge}
+            </button>
+          </Card>
+
+          {/* Card 3: Standard Pack */}
+          <Card className="p-7 bg-white border-blue-600 relative flex flex-col transition-all border-2 shadow-xl hover:-translate-y-2">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-[9px] font-black shadow-lg whitespace-nowrap z-20">
+              {t.badge_recommended}
+            </div>
+            <div className="mb-4 text-left">
+              <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic leading-tight">{t.paygo_c3_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px] text-left">{t.pricing_paygo_label}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-1 text-left">
+              <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c3_price}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.paygo_c3_f1, t.paygo_c3_f2, t.paygo_c3_f3, t.paygo_c3_f4].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : "text-slate-600"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-blue-600 text-white rounded-xl font-black text-sm hover:bg-blue-700 transition-all shadow-lg active:scale-95">
+              {t.pricing_cta_recharge}
+            </button>
+          </Card>
+
+          {/* Card 4: Bulk Pack */}
+          <Card className="p-7 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border shadow-sm">
+            <div className="mb-4 text-left">
+              <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic leading-tight">{t.paygo_c4_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px] text-left">{t.pricing_paygo_label}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-1 text-left">
+              <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c4_price}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.paygo_c4_f1, t.paygo_c4_f2, t.paygo_c4_f3, t.paygo_c4_f4].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : "text-slate-600"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-black text-sm hover:bg-black transition-all shadow-lg active:scale-95">
+              {t.pricing_cta_recharge}
+            </button>
+          </Card>
+        </div>
+      </section>
+
+      <hr className="border-slate-50" />
+
+      {/* Section 2: Subscription */}
+      <section>
+        <div className="mb-4 text-left">
+          <h3 className="text-2xl font-black text-slate-800">{t.pricing_tab_sub}</h3>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Sub Card 1: Pro */}
+          <Card className="p-7 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border">
+            <div className="mb-4 text-left">
+              <h3 className="text-2xl font-black mb-1 text-slate-900 flex items-center gap-2 italic">{t.sub_pro_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px]">{t.sub_pro_target}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-2 text-left">
+              <span className="text-4xl font-black text-slate-900">{t.sub_pro_price}</span>
+              <span className="text-slate-400 font-bold text-sm">{t.sub_pro_unit}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.sub_pro_f1, t.sub_pro_f2, t.sub_pro_f3, t.sub_pro_f4, t.sub_pro_f5].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : "text-slate-700"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-slate-50 text-slate-600 border-2 border-slate-100 rounded-xl font-black hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all active:scale-95 shadow-sm">
+              {t.sub_cta_subscribe}
+            </button>
+          </Card>
+
+          {/* Sub Card 2: Max */}
+          <Card className="p-7 bg-white border-blue-600 relative flex flex-col shadow-2xl transition-all hover:-translate-y-2 border-2">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black shadow-lg whitespace-nowrap z-20">
+              {t.badge_recommended}
+            </div>
+            <div className="mb-4 text-left">
+              <h3 className="text-2xl font-black mb-1 text-slate-900 flex items-center gap-2 italic">{t.sub_max_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px]">{t.sub_max_target}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-2 text-left">
+              <span className="text-4xl font-black text-slate-900">{t.sub_max_price}</span>
+              <span className="text-slate-400 font-bold text-sm">{t.sub_max_unit}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.sub_max_f1, t.sub_max_f2, t.sub_max_f3, t.sub_max_f4, t.sub_max_f5].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : i === 3 ? "text-blue-600 font-black tracking-tight" : "text-slate-700"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-blue-600 text-white rounded-xl font-black hover:bg-blue-700 transition-all shadow-xl shadow-blue-100 active:scale-95">
+              {t.sub_cta_subscribe}
+            </button>
+          </Card>
+
+          {/* Sub Card 3: Ultra */}
+          <Card className="p-7 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border">
+            <div className="mb-4 text-left">
+              <h3 className="text-2xl font-black mb-1 flex items-center gap-2 italic text-slate-900 font-sans tracking-tight">{t.sub_team_label}</h3>
+              <p className="text-slate-400 font-bold text-[10px] text-left">{t.sub_team_target}</p>
+            </div>
+            <div className="mb-6 flex items-baseline gap-2 text-left">
+              <span className="text-4xl font-black text-slate-900">{t.sub_team_price}</span>
+              <span className="text-slate-400 font-bold text-sm">{t.sub_team_unit}</span>
+            </div>
+            <ul className="space-y-2 mb-6 flex-1 text-left">
+              {[t.sub_team_f1, t.sub_team_f2, t.sub_team_f3, t.sub_team_f4, t.sub_team_f5].map((f, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm font-bold">
+                  <CheckCircle2 size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                  <span className={i === 0 ? "text-slate-900 font-black" : "text-slate-700"}>{f}</span>
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-black hover:bg-black transition-all shadow-xl active:scale-95">
+              {t.sub_cta_subscribe}
+            </button>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 
   const BillingView = () => (
-    <div className="p-10 space-y-12 max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-10">
-        <Card className="p-10 border-blue-100 bg-blue-50/20">
-          <h3 className="text-2xl font-black text-slate-800 mb-8 flex items-center gap-3">
-            <CreditCard className="text-blue-600" /> {t.dash_billing_title}
-          </h3>
-          <div className="grid grid-cols-2 gap-6 mb-10">
-            <div className="p-8 bg-white rounded-3xl shadow-sm border border-blue-50">
-              <p className="text-[10px] font-black text-slate-400 mb-2">{t.dash_monthly_sub}</p>
-              <p className="text-4xl font-black text-blue-600 tracking-tight">${subscriptionQuota.toFixed(2)}</p>
-            </div>
-            <div className="p-8 bg-white rounded-3xl shadow-sm border border-blue-50">
-              <p className="text-[10px] font-black text-slate-400 mb-2">{t.dash_general_balance}</p>
-              <p className="text-4xl font-black text-slate-800 tracking-tight">${balance.toFixed(2)}</p>
+    <div className="p-10 space-y-8 max-w-7xl mx-auto">
+      {/* Top Section: Three Cards */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Card 1: Online Recharge */}
+        <Card className="p-8 bg-white border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg font-black text-slate-800 mb-6 flex items-center gap-2">
+              {t.dash_recharge_online_title}
+            </h3>
+            <div className="relative mb-6">
+              <input
+                type="text"
+                placeholder={rechargeCurrency === 'USD' ? t.dash_recharge_amount_placeholder_usd : t.dash_recharge_amount_placeholder_cny}
+                className="w-full pl-6 pr-6 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold text-sm focus:border-blue-500 outline-none transition-all placeholder:text-slate-300"
+              />
             </div>
           </div>
-          <button className="w-full py-5 bg-blue-600 text-white rounded-3xl font-black text-lg shadow-xl shadow-blue-100 hover:bg-blue-700">{t.dash_recharge_online}</button>
+          <div className="flex gap-4">
+            <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#1677ff] text-white rounded-xl font-black text-xs hover:opacity-90 transition-all shadow-md">
+              <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[#1677ff]">
+                <span className="text-[10px]">支</span>
+              </div>
+              {t.dash_recharge_method_alipay}
+            </button>
+            <button className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#4caf50] text-white rounded-xl font-black text-xs hover:opacity-90 transition-all shadow-md">
+              <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[#4caf50]">
+                <DollarSign size={10} />
+              </div>
+              {t.dash_recharge_method_usdt}
+            </button>
+          </div>
         </Card>
-        <Card className="p-10">
-          <h3 className="text-2xl font-black text-slate-800 mb-8 flex items-center gap-3">
-            <Ticket className="text-amber-500" /> {t.dash_card_redeem}
-          </h3>
-          <p className="text-slate-500 mb-8 font-medium">{t.dash_redeem_desc}</p>
-          <div className="space-y-6">
-            <input
-              type="text"
-              maxLength={16}
-              value={redeemCode}
-              onChange={(e) => setRedeemCode(e.target.value.toUpperCase())}
-              placeholder="XXXX-XXXX-XXXX-XXXX"
-              className="w-full px-8 py-5 bg-slate-50 border-2 border-slate-100 rounded-3xl text-xl font-black tracking-widest focus:border-blue-500 outline-none transition-all placeholder:tracking-normal"
-            />
-            <button onClick={handleRedeem} className="w-full py-5 bg-slate-900 text-white rounded-3xl font-black text-lg hover:bg-black transition-all">{t.dash_activate}</button>
+
+        {/* Card 2: Account Balance */}
+        <Card className="p-8 bg-white border-slate-100 shadow-sm flex flex-col">
+          <h3 className="text-lg font-black text-slate-800 mb-6">{t.dash_account_balance_title}</h3>
+          <div className="flex-1 flex items-center justify-center">
+            <span className="text-6xl font-black text-slate-800 tracking-tighter">
+              $ {balance.toFixed(2)}
+            </span>
           </div>
+        </Card>
+
+        {/* Card 3: Top-up Reminder */}
+        <Card className="p-8 bg-white border-slate-100 shadow-sm">
+          <h3 className="text-lg font-black text-slate-800 mb-6">{t.dash_recharge_reminder_title}</h3>
+          <ul className="space-y-4">
+            <li className="text-sm font-bold text-slate-500 leading-relaxed">
+              {t.dash_recharge_reminder_1}
+            </li>
+            <li className="text-sm font-bold text-slate-500 leading-relaxed">
+              {t.dash_recharge_reminder_2}
+            </li>
+          </ul>
         </Card>
       </div>
+
+      {/* Bottom Section: Recharge Records Dashboard */}
+      <Card className="bg-white border-slate-100 shadow-sm overflow-hidden">
+        <div className="p-8 border-b border-slate-50 flex items-center justify-between">
+          <h3 className="text-lg font-black text-slate-800">{t.dash_recharge_records_title}</h3>
+          <div className="flex items-center gap-4 text-slate-400">
+            <div className="p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors"><History size={18} /></div>
+            <div className="p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors"><Layers size={18} /></div>
+            <div className="p-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors"><Settings size={18} /></div>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-slate-50/50 border-b border-slate-50">
+              <tr className="text-[11px] font-black text-slate-400">
+                <th className="px-8 py-5">{t.dash_th_recharge_amount}</th>
+                <th className="px-8 py-5">{t.dash_th_payment_amount}</th>
+                <th className="px-8 py-5">{t.dash_th_payment_method}</th>
+                <th className="px-8 py-5">{t.dash_th_order_id}</th>
+                <th className="px-8 py-5">{t.dash_th_status}</th>
+                <th className="px-8 py-5">{t.dash_th_created_at}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan={6} className="py-20">
+                  <div className="flex flex-col items-center justify-center opacity-40">
+                    <div className="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center mb-4 transition-all group-hover:bg-blue-50">
+                      <Layers size={40} className="text-slate-300" />
+                    </div>
+                    <p className="text-sm font-black text-slate-400 tracking-widest">{t.dash_no_data}</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card>
     </div>
   );
 
@@ -1422,7 +1738,7 @@ export function NovaHubApp() {
       <div className="p-10 space-y-8 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <h3 className="text-3xl font-black text-slate-800 mb-2">{t.dash_model_market}</h3>
+            <h3 className="text-3xl font-black text-slate-800 mb-2">{t.nav_dash_models}</h3>
             <p className="text-slate-500 font-bold text-[10px]">{t.pricing_paygo_label}</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -1463,7 +1779,8 @@ export function NovaHubApp() {
                   <th className="px-8 py-6">{t.dash_market_th_model}</th>
                   <th className="px-8 py-6">{t.dash_market_th_tags}</th>
                   <th className="px-8 py-6 text-center">{t.dash_market_th_multiplier}</th>
-                  <th className="px-8 py-6 text-right">{t.dash_market_th_price}</th>
+                  <th className="px-8 py-6 text-right">{t.dash_market_th_official_price}</th>
+                  <th className="px-8 py-6 text-right">{t.dash_market_th_our_price}</th>
                   <th className="px-8 py-6 text-center">{t.dash_market_th_action}</th>
                 </tr>
               </thead>
@@ -1577,33 +1894,7 @@ export function NovaHubApp() {
     </div>
   );
 
-  const LogsView = () => (
-    <div className="p-10 space-y-10 max-w-7xl mx-auto">
-      <h3 className="text-3xl font-black text-slate-800">{t.dash_logs_title}</h3>
-      <Card className="overflow-hidden border-none shadow-xl">
-        <table className="w-full text-left">
-          <thead className="bg-slate-50 border-b border-slate-100">
-            <tr className="text-[11px] font-black text-slate-400">
-              <th className="px-8 py-5">{t.dash_time}</th>
-              <th className="px-8 py-5">{t.dash_model}</th>
-              <th className="px-8 py-5">{t.dash_token_usage}</th>
-              <th className="px-8 py-5 text-right">{t.dash_cost}</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {MOCK_LOGS.map(log => (
-              <tr key={log.id} className="hover:bg-slate-50/50">
-                <td className="px-8 py-6 text-sm font-bold text-slate-400">{log.time}</td>
-                <td className="px-8 py-6 font-black text-slate-800">{log.model}</td>
-                <td className="px-8 py-6 font-bold text-slate-600">{log.tokens.toLocaleString()}</td>
-                <td className="px-8 py-6 text-right font-black text-blue-600">${log.cost.toFixed(4)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Card>
-    </div>
-  );
+
 
   return (
     <div className="min-h-screen bg-[#fafafa]">
@@ -1616,5 +1907,5 @@ export function NovaHubApp() {
 const container = document.getElementById('root');
 if (container) {
   const root = createRoot(container);
-  root.render(<NovaHubApp />);
+  root.render(<PrakasaAPIApp />);
 }

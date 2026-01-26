@@ -5,6 +5,39 @@ body {
     font-family: 'Inter', 'Noto Sans SC', sans-serif;
 }
 
+@keyframes vertical-scroll {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes highlight-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+        border-color: rgba(37, 99, 235, 0.6);
+    }
+}
+
+.animate-vertical-scroll {
+    animation: vertical-scroll 30s linear infinite;
+}
+
+.model-highlight {
+    animation: highlight-glow 3s ease-in-out infinite;
+}
+
+/* Original Styles */
 .glass-morphism {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
