@@ -151,7 +151,7 @@ const Badge = ({ children, color = "blue" }: { children?: React.ReactNode; color
     indigo: "bg-indigo-50 text-indigo-700 border-indigo-100",
   };
   return (
-    <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border ${colors[color] || colors.blue}`}>
+    <span className={`px-2.5 py-1 rounded-full text-[10px] font-black border ${colors[color] || colors.blue}`}>
       {children}
     </span>
   );
@@ -557,18 +557,18 @@ export function NovaHubApp() {
             <div className="w-10 h-10 bg-[#2563EB] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
               <Zap size={22} fill="white" />
             </div>
-            <span className="text-2xl font-black text-slate-800 tracking-tighter uppercase italic">NovaHub</span>
+            <span className="text-2xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
           </div>
           <div className="hidden lg:flex items-center gap-10 text-sm font-bold text-slate-600">
-            <a href="#" className="hover:text-blue-600 transition-colors uppercase tracking-wider">{t.nav_home}</a>
-            <a href="#features" className="hover:text-blue-600 transition-colors uppercase tracking-wider">{t.nav_features}</a>
-            <a href="#pricing" className="hover:text-blue-600 transition-colors uppercase tracking-wider">{t.nav_pricing}</a>
-            <a href="#docs" className="hover:text-blue-600 transition-colors uppercase tracking-wider">{t.nav_docs}</a>
+            <a href="#" className="hover:text-blue-600 transition-colors">{t.nav_home}</a>
+            <a href="#features" className="hover:text-blue-600 transition-colors">{t.nav_features}</a>
+            <a href="#pricing" className="hover:text-blue-600 transition-colors">{t.nav_pricing}</a>
+            <a href="#docs" className="hover:text-blue-600 transition-colors">{t.nav_docs}</a>
           </div>
           <div className="flex items-center gap-4">
             <button
               onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-              className="p-2 px-3 text-slate-500 hover:text-blue-600 transition-all flex items-center gap-2 font-black text-[12px] uppercase tracking-wider bg-slate-50 rounded-xl border border-slate-200/50 hover:border-blue-200 hover:bg-blue-50/50"
+              className="p-2 px-3 text-slate-500 hover:text-blue-600 transition-all flex items-center gap-2 font-black text-[12px] bg-slate-50 rounded-xl border border-slate-200/50 hover:border-blue-200 hover:bg-blue-50/50"
             >
               <Globe size={16} />
               {lang === 'zh' ? 'EN' : 'ZH'}
@@ -588,7 +588,7 @@ export function NovaHubApp() {
           <div className="max-w-7xl mx-auto px-10 flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="lg:w-1/2 space-y-10 z-10">
               <div className="space-y-6">
-                <h2 className="text-xl font-black text-blue-600 uppercase tracking-widest">NovaHub AI Platform</h2>
+                <h2 className="text-xl font-black text-blue-600">NovaHub AI Platform</h2>
                 <h1 className="text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tighter">
                   {t.hero_headline}<br />
                   <span className="text-blue-600">{t.hero_subline}</span>
@@ -618,18 +618,18 @@ export function NovaHubApp() {
                   </div>
                   <div>
                     <p className="text-slate-900 font-black leading-none mb-1">12,000+</p>
-                    <p className="text-[11px] text-slate-400 uppercase tracking-wider">{t.trust_devs_unit}</p>
+                    <p className="text-[11px] text-slate-400 font-bold">{t.trust_devs_unit}</p>
                   </div>
                 </div>
                 <div className="h-8 w-px bg-slate-100 hidden md:block"></div>
                 <div className="flex flex-col">
                   <p className="text-slate-900 font-black leading-none mb-1">{t.trust_stat_power}</p>
-                  <p className="text-[11px] text-slate-400 uppercase tracking-wider">{t.trust_tokens_unit}</p>
+                  <p className="text-[11px] text-slate-400 font-bold">{t.trust_tokens_unit}</p>
                 </div>
                 <div className="h-8 w-px bg-slate-100 hidden md:block"></div>
                 <div className="flex flex-col">
                   <p className="text-slate-900 font-black leading-none mb-1">&lt; 200ms</p>
-                  <p className="text-[11px] text-slate-400 uppercase tracking-wider">{t.trust_latency_unit}</p>
+                  <p className="text-[11px] text-slate-400 font-bold">{t.trust_latency_unit}</p>
                 </div>
               </div>
             </div>
@@ -694,7 +694,7 @@ export function NovaHubApp() {
                     <Sparkles size={24} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Model</p>
+                    <p className="text-[10px] font-black text-slate-400">Active Model</p>
                     <p className="font-black text-slate-900 text-lg">Claude Code</p>
                   </div>
                 </div>
@@ -704,7 +704,7 @@ export function NovaHubApp() {
                     <ShieldCheck size={24} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Security</p>
+                    <p className="text-[10px] font-black text-slate-400">Security</p>
                     <p className="font-black text-slate-900 text-lg">Official Enterprise Key</p>
                   </div>
                 </div>
@@ -870,12 +870,12 @@ export function NovaHubApp() {
                   {/* PAYGO Card 1: Flexible */}
                   <Card className="p-8 bg-gradient-to-br from-indigo-50/50 to-white border-indigo-100 flex flex-col transition-all hover:-translate-y-2 border shadow-sm">
                     <div className="mb-6 text-left">
-                      <h3 className="text-xl font-black mb-1 text-indigo-900 flex items-center gap-2 italic uppercase leading-tight">{t.paygo_c1_label}</h3>
-                      <p className="text-indigo-400 font-bold uppercase tracking-widest text-[10px]">{t.pricing_paygo_label}</p>
+                      <h3 className="text-xl font-black mb-1 text-indigo-900 flex items-center gap-2 italic leading-tight">{t.paygo_c1_label}</h3>
+                      <p className="text-indigo-400 font-bold text-[10px]">{t.pricing_paygo_label}</p>
                     </div>
                     <div className="mb-8 flex items-baseline gap-1 text-left">
                       <span className="text-4xl font-black text-indigo-950 whitespace-nowrap">{t.paygo_c1_price}</span>
-                      <span className="text-indigo-400 font-bold text-[10px] tracking-widest uppercase">{t.pricing_paygo_start}</span>
+                      <span className="text-indigo-400 font-bold text-[10px]">{t.pricing_paygo_start}</span>
                     </div>
                     <ul className="space-y-3 mb-8 flex-1 text-left">
                       <li className="flex items-start gap-2.5 text-xs font-bold">
@@ -907,8 +907,8 @@ export function NovaHubApp() {
                   {/* PAYGO Card 2: Light */}
                   <Card className="p-8 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border shadow-sm">
                     <div className="mb-6 text-left">
-                      <h3 className="text-xl font-black mb-1 text-slate-800 flex items-center gap-2 italic uppercase leading-tight">{t.paygo_c2_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">{t.pricing_paygo_label}</p>
+                      <h3 className="text-xl font-black mb-1 text-slate-800 flex items-center gap-2 italic leading-tight">{t.paygo_c2_label}</h3>
+                      <p className="text-slate-400 font-bold text-[10px]">{t.pricing_paygo_label}</p>
                     </div>
                     <div className="mb-8 flex items-baseline gap-1 text-left">
                       <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c2_price}</span>
@@ -938,12 +938,12 @@ export function NovaHubApp() {
 
                   {/* PAYGO Card 3: Standard */}
                   <Card className="p-8 bg-white border-blue-600 relative flex flex-col shadow-xl transition-all hover:-translate-y-2 border-2">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap z-20">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-[9px] font-black shadow-lg whitespace-nowrap z-20">
                       {t.badge_recommended}
                     </div>
                     <div className="mb-6 text-left">
-                      <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic uppercase leading-tight">{t.paygo_c3_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">{t.pricing_paygo_label}</p>
+                      <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic leading-tight">{t.paygo_c3_label}</h3>
+                      <p className="text-slate-400 font-bold text-[10px]">{t.pricing_paygo_label}</p>
                     </div>
                     <div className="mb-8 flex items-baseline gap-1 text-left">
                       <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c3_price}</span>
@@ -974,8 +974,8 @@ export function NovaHubApp() {
                   {/* PAYGO Card 4: Bulk */}
                   <Card className="p-8 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border shadow-sm">
                     <div className="mb-6 text-left">
-                      <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic uppercase font-sans tracking-tight leading-tight">{t.paygo_c4_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] text-left">{t.pricing_paygo_label}</p>
+                      <h3 className="text-xl font-black mb-1 text-slate-900 flex items-center gap-2 italic font-sans tracking-tight leading-tight">{t.paygo_c4_label}</h3>
+                      <p className="text-slate-400 font-bold text-[10px] text-left">{t.pricing_paygo_label}</p>
                     </div>
                     <div className="mb-8 flex items-baseline gap-1 text-left">
                       <span className="text-4xl font-black text-slate-900 whitespace-nowrap">{t.paygo_c4_price}</span>
@@ -1009,11 +1009,11 @@ export function NovaHubApp() {
                   <Card className="p-10 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border">
                     <div className="mb-8 text-left">
                       <h3 className="text-2xl font-black mb-1 text-slate-900 flex items-center gap-2 italic">{t.sub_pro_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">{t.sub_pro_target}</p>
+                      <p className="text-slate-400 font-bold text-[10px]">{t.sub_pro_target}</p>
                     </div>
                     <div className="mb-10 flex items-baseline gap-2 text-left">
                       <span className="text-5xl font-black text-slate-900">{t.sub_pro_price}</span>
-                      <span className="text-slate-400 font-bold text-sm tracking-widest uppercase">{t.sub_pro_unit}</span>
+                      <span className="text-slate-400 font-bold text-sm">{t.sub_pro_unit}</span>
                     </div>
                     <ul className="space-y-4 mb-10 flex-1 text-left">
                       <li className="flex items-start gap-3 text-sm font-bold">
@@ -1044,16 +1044,16 @@ export function NovaHubApp() {
 
                   {/* Subscription Card 2: Max */}
                   <Card className="p-10 bg-white border-blue-600 relative flex flex-col shadow-2xl transition-all hover:-translate-y-2 border-2">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap z-20">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black shadow-lg whitespace-nowrap z-20">
                       {t.badge_recommended}
                     </div>
                     <div className="mb-8 text-left">
                       <h3 className="text-2xl font-black mb-1 text-slate-900 flex items-center gap-2 italic">{t.sub_max_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">{t.sub_max_target}</p>
+                      <p className="text-slate-400 font-bold text-[10px]">{t.sub_max_target}</p>
                     </div>
                     <div className="mb-10 flex items-baseline gap-2 text-left">
                       <span className="text-5xl font-black text-slate-900">{t.sub_max_price}</span>
-                      <span className="text-slate-400 font-bold text-sm tracking-widest uppercase">{t.sub_max_unit}</span>
+                      <span className="text-slate-400 font-bold text-sm">{t.sub_max_unit}</span>
                     </div>
                     <ul className="space-y-4 mb-10 flex-1 text-left">
                       <li className="flex items-start gap-3 text-sm font-bold">
@@ -1085,12 +1085,12 @@ export function NovaHubApp() {
                   {/* Subscription Plan 3: Ultra */}
                   <Card className="p-10 bg-white border-slate-100 flex flex-col transition-all hover:-translate-y-2 border">
                     <div className="mb-8 text-left">
-                      <h3 className="text-2xl font-black mb-1 flex items-center gap-2 italic text-slate-900 uppercase font-sans tracking-tight">{t.sub_team_label}</h3>
-                      <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] text-left">{t.sub_team_target}</p>
+                      <h3 className="text-2xl font-black mb-1 flex items-center gap-2 italic text-slate-900 font-sans tracking-tight">{t.sub_team_label}</h3>
+                      <p className="text-slate-400 font-bold text-[10px] text-left">{t.sub_team_target}</p>
                     </div>
                     <div className="mb-10 flex items-baseline gap-2 text-left">
                       <span className="text-5xl font-black text-slate-900">{t.sub_team_price}</span>
-                      <span className="text-slate-400 font-bold text-sm tracking-widest uppercase">{t.sub_team_unit}</span>
+                      <span className="text-slate-400 font-bold text-sm">{t.sub_team_unit}</span>
                     </div>
                     <ul className="space-y-4 mb-10 flex-1 text-left">
                       <li className="flex items-start gap-3 text-sm font-bold">
@@ -1133,10 +1133,10 @@ export function NovaHubApp() {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-[#2563EB] rounded-lg flex items-center justify-center text-white"><Zap size={18} fill="white" /></div>
-              <span className="text-xl font-black text-slate-800 tracking-tighter uppercase italic">NovaHub</span>
+              <span className="text-xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
             </div>
             <p className="text-sm">© 2026 NovaHub AI Cloud Platform. All rights reserved.</p>
-            <div className="flex gap-8 text-sm uppercase tracking-widest">
+            <div className="flex gap-8 text-sm">
               <a href="#" className="hover:text-blue-600">Privacy</a>
               <a href="#" className="hover:text-blue-600">Terms</a>
               <a href="#" className="hover:text-blue-600">Contact</a>
@@ -1154,7 +1154,7 @@ export function NovaHubApp() {
           <div className="w-10 h-10 bg-[#2563EB] rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
             <Zap size={20} fill="white" />
           </div>
-          <span className="text-2xl font-black text-slate-800 tracking-tighter italic uppercase">NovaHub</span>
+          <span className="text-2xl font-black text-slate-800 tracking-tighter italic">NovaHub</span>
         </div>
         <nav className="flex-1 px-6 space-y-1 overflow-y-auto mt-4">
           {[
@@ -1181,7 +1181,7 @@ export function NovaHubApp() {
         </nav>
         <div className="p-6">
           <Card className="bg-slate-50 p-6 mb-6 rounded-3xl border-none shadow-none">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">{t.dash_available_quota}</p>
+            <p className="text-[10px] font-black text-slate-400 mb-1">{t.dash_available_quota}</p>
             <p className="text-2xl font-black text-slate-800 tracking-tight">${totalEffectiveBalance.toFixed(2)}</p>
           </Card>
           <button
@@ -1195,7 +1195,7 @@ export function NovaHubApp() {
 
       <main className="flex-1 flex flex-col min-w-0">
         <header className="h-20 glass-morphism border-b border-slate-100 flex items-center justify-between px-10 shrink-0 sticky top-0 z-20">
-          <h2 className="text-xl font-black text-slate-800">{view.toUpperCase()}</h2>
+          <h2 className="text-xl font-black text-slate-800">{view.charAt(0).toUpperCase() + view.slice(1)}</h2>
           <div className="w-11 h-11 bg-blue-100 text-[#2563EB] rounded-2xl flex items-center justify-center font-black">NU</div>
         </header>
 
@@ -1224,7 +1224,7 @@ export function NovaHubApp() {
           <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
             <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-5 border border-white/20 flex-1 min-w-[240px] relative group overflow-hidden">
               <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest">{t.dash_base_url}</p>
+                <p className="text-[10px] font-black text-blue-200">{t.dash_base_url}</p>
                 <button
                   onClick={() => { navigator.clipboard.writeText('https://api.novahub.com/v1'); alert('Copied!'); }}
                   className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded-lg text-white"
@@ -1236,7 +1236,7 @@ export function NovaHubApp() {
             </div>
             <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-5 border border-white/20 flex-1 min-w-[240px] relative group overflow-hidden">
               <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest">{t.dash_api_key}</p>
+                <p className="text-[10px] font-black text-blue-200">{t.dash_api_key}</p>
                 <button
                   onClick={() => { navigator.clipboard.writeText('sk-nova-xxxxxxxxxxxx4k9a'); alert('Copied!'); }}
                   className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded-lg text-white"
@@ -1299,7 +1299,7 @@ export function NovaHubApp() {
           </div>
           <div className="p-8 flex-1 flex flex-col justify-center gap-8">
             <div className="border-b border-slate-50 pb-8">
-              <span className="text-4xl font-black text-[#1e293b] tracking-tighter italic uppercase">FREE</span>
+              <span className="text-4xl font-black text-[#1e293b] tracking-tighter italic">FREE</span>
             </div>
             <button className="w-full py-4 bg-[#2563EB] text-white rounded-2xl font-black shadow-lg shadow-blue-100 hover:bg-blue-600 hover:-translate-y-0.5 transition-all">
               {t.dash_redeem_code}
@@ -1319,7 +1319,7 @@ export function NovaHubApp() {
             <div className={`w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 text-${stat.color}-600`}>
               <stat.icon size={22} />
             </div>
-            <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">{stat.label}</p>
+            <p className="text-slate-400 text-[10px] font-black mb-1">{stat.label}</p>
             <p className="text-3xl font-black text-slate-800 tracking-tight">{stat.value}</p>
           </Card>
         ))}
@@ -1338,7 +1338,7 @@ export function NovaHubApp() {
       <Card className="overflow-hidden border-none shadow-xl">
         <table className="w-full text-left">
           <thead className="bg-slate-50 border-b border-slate-100">
-            <tr className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
+            <tr className="text-[11px] font-black text-slate-400">
               <th className="px-8 py-5">{t.dash_th_name}</th>
               <th className="px-8 py-5">{t.dash_th_status}</th>
               <th className="px-8 py-5">{t.dash_th_quota}</th>
@@ -1375,11 +1375,11 @@ export function NovaHubApp() {
           </h3>
           <div className="grid grid-cols-2 gap-6 mb-10">
             <div className="p-8 bg-white rounded-3xl shadow-sm border border-blue-50">
-              <p className="text-[10px] font-black text-slate-400 uppercase mb-2">{t.dash_monthly_sub}</p>
+              <p className="text-[10px] font-black text-slate-400 mb-2">{t.dash_monthly_sub}</p>
               <p className="text-4xl font-black text-blue-600 tracking-tight">${subscriptionQuota.toFixed(2)}</p>
             </div>
             <div className="p-8 bg-white rounded-3xl shadow-sm border border-blue-50">
-              <p className="text-[10px] font-black text-slate-400 uppercase mb-2">{t.dash_general_balance}</p>
+              <p className="text-[10px] font-black text-slate-400 mb-2">{t.dash_general_balance}</p>
               <p className="text-4xl font-black text-slate-800 tracking-tight">${balance.toFixed(2)}</p>
             </div>
           </div>
@@ -1423,7 +1423,7 @@ export function NovaHubApp() {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <h3 className="text-3xl font-black text-slate-800 mb-2">{t.dash_model_market}</h3>
-            <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px]">{t.pricing_paygo_label}</p>
+            <p className="text-slate-500 font-bold text-[10px]">{t.pricing_paygo_label}</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative">
@@ -1445,7 +1445,7 @@ export function NovaHubApp() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all whitespace-nowrap border-2 ${selectedCategory === cat
+              className={`px-5 py-2.5 rounded-xl font-black text-xs transition-all whitespace-nowrap border-2 ${selectedCategory === cat
                 ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-100'
                 : 'bg-white text-slate-500 border-slate-100 hover:border-blue-100 hover:text-blue-600'
                 }`}
@@ -1459,7 +1459,7 @@ export function NovaHubApp() {
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead className="bg-slate-50 border-b border-slate-100">
-                <tr className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <tr className="text-[10px] font-black text-slate-400">
                   <th className="px-8 py-6">{t.dash_market_th_model}</th>
                   <th className="px-8 py-6">{t.dash_market_th_tags}</th>
                   <th className="px-8 py-6 text-center">{t.dash_market_th_multiplier}</th>
@@ -1477,14 +1477,14 @@ export function NovaHubApp() {
                         </div>
                         <div>
                           <p className="font-black text-slate-800 text-base leading-none mb-1.5">{model.name}</p>
-                          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{model.provider}</p>
+                          <p className="text-[10px] font-bold text-slate-400">{model.provider}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-8 py-6">
                       <div className="flex flex-wrap gap-1.5">
                         {model.tags.map(tag => (
-                          <span key={tag} className="text-[9px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase tracking-tight border border-slate-200/50">
+                          <span key={tag} className="text-[9px] font-black px-2 py-1 bg-slate-100 text-slate-500 rounded-md tracking-tight border border-slate-200/50">
                             {tag}
                           </span>
                         ))}
@@ -1500,11 +1500,11 @@ export function NovaHubApp() {
                     <td className="px-8 py-6 text-right">
                       <div className="flex flex-col items-end gap-1">
                         <div className="flex items-center gap-1.5 font-bold text-slate-500 text-xs">
-                          <span className="text-[9px] uppercase opacity-50">In:</span>
+                          <span className="text-[9px] opacity-50">In:</span>
                           <span>${model.officialInput.toFixed(2)}</span>
                         </div>
                         <div className="flex items-center gap-1.5 font-bold text-slate-500 text-xs">
-                          <span className="text-[9px] uppercase opacity-50">Out:</span>
+                          <span className="text-[9px] opacity-50">Out:</span>
                           <span>${model.officialOutput.toFixed(2)}</span>
                         </div>
                       </div>
@@ -1512,11 +1512,11 @@ export function NovaHubApp() {
                     <td className="px-8 py-6 text-right">
                       <div className="flex flex-col items-end gap-1">
                         <div className="flex items-center gap-1.5 font-black text-blue-600 text-sm">
-                          <span className="text-[9px] uppercase opacity-70">输入:</span>
+                          <span className="text-[9px] opacity-70">输入:</span>
                           <span>${(model.officialInput * model.multiplier).toFixed(2)}</span>
                         </div>
                         <div className="flex items-center gap-1.5 font-black text-orange-600 text-sm">
-                          <span className="text-[9px] uppercase opacity-70">输出:</span>
+                          <span className="text-[9px] opacity-70">输出:</span>
                           <span>${(model.officialOutput * model.multiplier).toFixed(2)}</span>
                         </div>
                       </div>
@@ -1524,7 +1524,7 @@ export function NovaHubApp() {
                     <td className="px-8 py-6 text-center">
                       <button
                         onClick={() => setView('playground')}
-                        className="inline-flex items-center justify-center px-4 py-2 bg-slate-50 text-slate-400 rounded-xl font-black text-[10px] uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all active:scale-95"
+                        className="inline-flex items-center justify-center px-4 py-2 bg-slate-50 text-slate-400 rounded-xl font-black text-[10px] hover:bg-blue-600 hover:text-white transition-all active:scale-95"
                       >
                         {t.dash_market_th_action}
                       </button>
@@ -1583,7 +1583,7 @@ export function NovaHubApp() {
       <Card className="overflow-hidden border-none shadow-xl">
         <table className="w-full text-left">
           <thead className="bg-slate-50 border-b border-slate-100">
-            <tr className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
+            <tr className="text-[11px] font-black text-slate-400">
               <th className="px-8 py-5">{t.dash_time}</th>
               <th className="px-8 py-5">{t.dash_model}</th>
               <th className="px-8 py-5">{t.dash_token_usage}</th>
