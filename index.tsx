@@ -202,7 +202,7 @@ export function NovaHubApp() {
       pricing_tab_sub: "包月订阅",
       sub_pro_label: "Pro 开发者版",
       sub_pro_target: "个人开发者 / 沉浸式翻译用户",
-      sub_pro_price: "¥ 198.00",
+      sub_pro_price: "$ 28.00",
       sub_pro_unit: "/月",
       sub_pro_f1: "每日 $25.00 额度 (月总价值 $750)",
       sub_pro_f2: "每 5 小时可用 $12.50 额度",
@@ -211,7 +211,7 @@ export function NovaHubApp() {
       sub_pro_f5: "标准 API 并发通道支持",
       sub_max_label: "Max 极速版",
       sub_max_target: "全职程序员 / 高频重度开发",
-      sub_max_price: "¥ 358.00",
+      sub_max_price: "$ 50.00",
       sub_max_unit: "/月",
       sub_max_f1: "每日 $40.00 额度 (月总价值 $1200)",
       sub_max_f2: "每 5 小时可用 $20.00 额度",
@@ -220,7 +220,7 @@ export function NovaHubApp() {
       sub_max_f5: "优先 API 并发队列支持",
       sub_team_label: "Ultra 企业版",
       sub_team_target: "工作室 / 7x24小时自动化任务",
-      sub_team_price: "¥ 698.00",
+      sub_team_price: "$ 98.00",
       sub_team_unit: "/月",
       sub_team_f1: "每日 $100.00 额度 (月总价值 $3000)",
       sub_team_f2: "每 5 小时可用 $50.00 额度",
@@ -228,28 +228,28 @@ export function NovaHubApp() {
       sub_team_f4: "支持多线程高并发调用",
       sub_team_f5: "企业级专属高速通道",
       paygo_c1_label: "自由充值",
-      paygo_c1_price: "¥ 1.00",
+      paygo_c1_price: "$ 1.00",
       paygo_c1_f1: "自定义金额充值",
       paygo_c1_f2: "按量计费，余额永久有效",
       paygo_c1_f3: "支持全平台所有模型",
       paygo_c1_f4: "无任何模型调用限制",
       paygo_c1_f5: "完美兼容 Cursor / VSCode 插件",
       paygo_c2_label: "轻量包",
-      paygo_c2_price: "¥ 80.00",
+      paygo_c2_price: "$ 11.00",
       paygo_c2_f1: "包含 $100.00 额度",
       paygo_c2_f2: "按量计费，余额永久有效",
       paygo_c2_f3: "仅支持 Claude 4.5 & Codex 5.1 & Gemini 3系列",
       paygo_c2_f4: "完美兼容 Cursor / VSCode 插件",
       paygo_c2_f5: "",
       paygo_c3_label: "标准包",
-      paygo_c3_price: "¥ 450.00",
+      paygo_c3_price: "$ 62.00",
       paygo_c3_f1: "包含 $500.00 额度",
       paygo_c3_f2: "按量计费，余额永久有效",
       paygo_c3_f3: "仅支持 Claude 4.5 & Codex 5.1 & Gemini 3系列",
       paygo_c3_f4: "完美兼容 Cursor / Windsurf / Codex",
       paygo_c3_f5: "",
       paygo_c4_label: "海量包",
-      paygo_c4_price: "¥ 898.00",
+      paygo_c4_price: "$ 125.00",
       paygo_c4_f1: "包含 $1000.00 额度",
       paygo_c4_f2: "按量计费，余额永久有效",
       paygo_c4_f3: "仅支持 Claude 4.5 & Codex 5.1 & Gemini 3系列",
@@ -302,8 +302,7 @@ export function NovaHubApp() {
       dash_market_th_model: "模型名称 / 提供商",
       dash_market_th_tags: "标签",
       dash_market_th_multiplier: "计费倍率",
-      dash_market_th_official_price: "官方价格 (Input / Output)",
-      dash_market_th_our_price: "我们的价格 (Input / Output)",
+      dash_market_th_price: "价格 ($/1M)",
       dash_market_th_action: "测试",
       dash_billing_title: "财务资产",
       dash_balance_title: "当前余额",
@@ -417,7 +416,7 @@ export function NovaHubApp() {
       pricing_ultra_label: "Enterprise Plan",
       sub_pro_label: "Pro Developer",
       sub_pro_target: "Individual Developers / Immersive Translate Users",
-      sub_pro_price: "¥ 198.00",
+      sub_pro_price: "$ 28.00",
       sub_pro_unit: "/mo",
       sub_pro_f1: "Daily $25.00 quota ($750/mo value)",
       sub_pro_f2: "Available $12.50 every 5 hours",
@@ -426,7 +425,7 @@ export function NovaHubApp() {
       sub_pro_f5: "Standard API Concurrency Lane",
       sub_max_label: "Max Speed",
       sub_max_target: "Full-time Programmers / Heavy Development",
-      sub_max_price: "¥ 358.00",
+      sub_max_price: "$ 50.00",
       sub_max_unit: "/mo",
       sub_max_f1: "Daily $40.00 quota ($1200/mo value)",
       sub_max_f2: "Available $20.00 every 5 hours",
@@ -435,7 +434,7 @@ export function NovaHubApp() {
       sub_max_f5: "Priority API Concurrency Queue",
       sub_team_label: "Ultra Enterprise",
       sub_team_target: "Studios / 7x24 Automation",
-      sub_team_price: "¥ 698.00",
+      sub_team_price: "$ 98.00",
       sub_team_unit: "/mo",
       sub_team_f1: "Daily $100.00 quota ($3000/mo value)",
       sub_team_f2: "Available $50.00 every 5 hours",
@@ -443,28 +442,28 @@ export function NovaHubApp() {
       sub_team_f4: "Supports Multi-threading High Concurrency",
       sub_team_f5: "Enterprise High Speed Lane",
       paygo_c1_label: "Flexible",
-      paygo_c1_price: "¥ 1.00",
+      paygo_c1_price: "$ 1.00",
       paygo_c1_f1: "Custom recharge amount",
       paygo_c1_f2: "Pay-as-you-go, never expires",
       paygo_c1_f3: "Supports all models across the platform",
       paygo_c1_f4: "No model call restrictions",
       paygo_c1_f5: "Cursor / VSCode plugin friendly",
       paygo_c2_label: "Light Pack",
-      paygo_c2_price: "¥ 80.00",
+      paygo_c2_price: "$ 11.00",
       paygo_c2_f1: "Includes $100.00 credit",
       paygo_c2_f2: "Pay-as-you-go, never expires",
       paygo_c2_f3: "Supports Claude 4.5 / Codex / Gemini 3 series",
       paygo_c2_f4: "Cursor / VSCode plugin compliant",
       paygo_c2_f5: "",
       paygo_c3_label: "Standard Pack",
-      paygo_c3_price: "¥ 450.00",
+      paygo_c3_price: "$ 62.00",
       paygo_c3_f1: "Includes $500.00 credit",
       paygo_c3_f2: "Pay-as-you-go, never expires",
       paygo_c3_f3: "Supports Claude 4.5 / Codex / Gemini 3 series",
       paygo_c3_f4: "Cursor / Windsurf / Codex friendly",
       paygo_c3_f5: "",
       paygo_c4_label: "Bulk Pack",
-      paygo_c4_price: "¥ 898.00",
+      paygo_c4_price: "$ 125.00",
       paygo_c4_f1: "Includes $1000.00 credit",
       paygo_c4_f2: "Pay-as-you-go, never expires",
       paygo_c4_f3: "Supports Claude 4.5 / Codex / Gemini 3 series",
@@ -483,8 +482,7 @@ export function NovaHubApp() {
       dash_market_th_model: "Model / Provider",
       dash_market_th_tags: "Tags",
       dash_market_th_multiplier: "Multiplier",
-      dash_market_th_official_price: "Official Price (In / Out)",
-      dash_market_th_our_price: "Our Price (In / Out)",
+      dash_market_th_price: "Price ($/1M)",
       dash_market_th_action: "Try",
       dash_billing_title: "Billing & Assets",
       nav_dash_overview: "Overview",
@@ -1465,8 +1463,7 @@ export function NovaHubApp() {
                   <th className="px-8 py-6">{t.dash_market_th_model}</th>
                   <th className="px-8 py-6">{t.dash_market_th_tags}</th>
                   <th className="px-8 py-6 text-center">{t.dash_market_th_multiplier}</th>
-                  <th className="px-8 py-6 text-right">{t.dash_market_th_official_price}</th>
-                  <th className="px-8 py-6 text-right">{t.dash_market_th_our_price}</th>
+                  <th className="px-8 py-6 text-right">{t.dash_market_th_price}</th>
                   <th className="px-8 py-6 text-center">{t.dash_market_th_action}</th>
                 </tr>
               </thead>
@@ -1516,11 +1513,11 @@ export function NovaHubApp() {
                       <div className="flex flex-col items-end gap-1">
                         <div className="flex items-center gap-1.5 font-black text-blue-600 text-sm">
                           <span className="text-[9px] uppercase opacity-70">输入:</span>
-                          <span>¥{(model.officialInput * model.multiplier * 7.2).toFixed(2)}</span>
+                          <span>${(model.officialInput * model.multiplier).toFixed(2)}</span>
                         </div>
                         <div className="flex items-center gap-1.5 font-black text-orange-600 text-sm">
                           <span className="text-[9px] uppercase opacity-70">输出:</span>
-                          <span>¥{(model.officialOutput * model.multiplier * 7.2).toFixed(2)}</span>
+                          <span>${(model.officialOutput * model.multiplier).toFixed(2)}</span>
                         </div>
                       </div>
                     </td>
