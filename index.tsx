@@ -1271,7 +1271,7 @@ export function NovaHubApp() {
                   <span className="text-sm font-black text-slate-700">{t.dash_sub_balance}</span>
                   <span className="text-[10px] text-slate-400 font-medium">{t.dash_sub_balance_desc}</span>
                 </div>
-                <span className="text-lg font-black text-slate-800 tracking-tight">¥ {subscriptionQuota.toFixed(2)}</span>
+                <span className="text-lg font-black text-slate-800 tracking-tight">$ {subscriptionQuota.toFixed(2)}</span>
               </div>
               <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
                 <div className="h-full bg-emerald-500 rounded-full" style={{ width: '100%' }}></div>
@@ -1283,7 +1283,7 @@ export function NovaHubApp() {
                   <span className="text-sm font-black text-slate-700">{t.dash_paygo_balance}</span>
                   <span className="text-[10px] text-slate-400 font-medium">{t.dash_paygo_balance_desc}</span>
                 </div>
-                <span className="text-lg font-black text-slate-800 tracking-tight">¥ {balance.toFixed(2)}</span>
+                <span className="text-lg font-black text-slate-800 tracking-tight">$ {balance.toFixed(2)}</span>
               </div>
               <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
                 <div className="h-full bg-slate-300 rounded-full" style={{ width: '10%' }}></div>
