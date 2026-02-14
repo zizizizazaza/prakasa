@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaHub AI - 一个密钥，连接所有模型</title>
+  <title>Prakasa - 一个密钥，连接所有模型</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,14 +21,14 @@
     }
 
     .glass-morphism {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(13, 17, 26, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #ec4899 100%);
+      background: linear-gradient(135deg, #ef4444 0%, #991b1b 50%, #7f1d1d 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -110,6 +110,20 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    @keyframes scroll-vertical {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    .animate-scroll-vertical {
+      animation: scroll-vertical 30s linear infinite;
+    }
   </style>
   <script type="importmap">
 {
@@ -124,10 +138,9 @@
   }
 }
 </script>
-  <link rel="stylesheet" href="/index.css">
 </head>
 
-<body class="bg-[#fafafa] text-slate-900 antialiased">
+<body class="bg-[#050810] text-[#f0f4ff] antialiased">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
