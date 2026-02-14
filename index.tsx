@@ -749,27 +749,27 @@ export function PrakasaAPIApp() {
                   <div className="space-y-4">
 
                     {/* Block 1: Default Machine - inline compact */}
-                    <div className="space-y-2.5">
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-5 h-5 bg-white/[0.1] rounded text-[10px] font-bold text-slate-200 flex items-center justify-center">1</span>
-                        <span className="text-white font-bold text-[13px]">{lang === 'zh' ? '托管机器' : 'Hosting Machine'}</span>
-                        <span className="ml-auto text-white font-bold text-[15px]">${machinePrice}<span className="text-slate-400 text-[10px] font-normal">/mo</span></span>
+                    <div className="space-y-3.5">
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 bg-white/[0.1] rounded text-[11px] font-bold text-slate-200 flex items-center justify-center">1</span>
+                        <span className="text-white font-bold text-[15px]">{lang === 'zh' ? '托管机器' : 'Hosting Machine'}</span>
+                        <span className="ml-auto text-white font-bold text-[18px]">${machinePrice}<span className="text-slate-400 text-[12px] font-normal">/mo</span></span>
                       </div>
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 group/machine">
-                        <div className="w-7 h-7 bg-emerald-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover/machine:scale-110 transition-transform duration-500">
-                          <Server size={12} className="text-emerald-400 animate-pulse" />
+                      <div className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 group/machine">
+                        <div className="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center shrink-0 group-hover/machine:scale-110 transition-transform duration-500">
+                          <Server size={16} className="text-emerald-400 animate-pulse" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-white font-semibold text-[12px]">{lang === 'zh' ? '标准实例' : 'Standard Instance'}</p>
-                          <p className="text-slate-400 text-[10px] font-mono">{machineSpec}</p>
+                          <p className="text-white font-semibold text-[14px]">{lang === 'zh' ? '标准实例' : 'Standard Instance'}</p>
+                          <p className="text-slate-400 text-[11px] font-mono">{machineSpec}</p>
                         </div>
-                        <div className="flex items-center gap-3 shrink-0">
+                        <div className="flex items-center gap-4 shrink-0">
                           {[
                             { label: lang === 'zh' ? '隔离' : 'Isolated', icon: '🔒' },
                             { label: '24/7', icon: '⚡' },
                             { label: lang === 'zh' ? '自动更新' : 'Auto-update', icon: '🔄' },
                           ].map((item, i) => (
-                            <span key={i} className="text-[9px] text-slate-400 font-medium">{item.icon} {item.label}</span>
+                            <span key={i} className="text-[10px] text-slate-400 font-medium">{item.icon} {item.label}</span>
                           ))}
                         </div>
                       </div>
@@ -779,14 +779,14 @@ export function PrakasaAPIApp() {
                     <div className="border-t border-white/[0.04]"></div>
 
                     {/* Block 2: Model Package - 3 column cards */}
-                    <div className="space-y-2.5">
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-5 h-5 bg-white/[0.1] rounded text-[10px] font-bold text-slate-200 flex items-center justify-center">2</span>
-                        <span className="text-white font-bold text-[13px]">{lang === 'zh' ? '模型套餐' : 'Model Package'}</span>
-                        <span className="text-slate-400 text-[10px] font-medium ml-1">{lang === 'zh' ? '(可选)' : '(optional)'}</span>
+                    <div className="space-y-3.5">
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 bg-white/[0.1] rounded text-[11px] font-bold text-slate-200 flex items-center justify-center">2</span>
+                        <span className="text-white font-bold text-[15px]">{lang === 'zh' ? '模型套餐' : 'Model Package'}</span>
+                        <span className="text-slate-400 text-[11px] font-medium ml-1">{lang === 'zh' ? '(可选)' : '(optional)'}</span>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-3 gap-3">
                         {(['eco', 'balanced', 'pro'] as const).map((key) => {
                           const plan = modelPlans[key];
                           const isSelected = modelPlan === key;
@@ -794,31 +794,31 @@ export function PrakasaAPIApp() {
                             <button
                               key={key}
                               onClick={() => setModelPlan(isSelected ? 'none' : key)}
-                              className={`text-left p-3 rounded-xl border transition-all duration-300 relative flex flex-col hover:scale-[1.02] active:scale-[0.98] ${isSelected
+                              className={`text-left p-4 rounded-xl border transition-all duration-300 relative flex flex-col hover:scale-[1.02] active:scale-[0.98] ${isSelected
                                 ? 'border-white/40 bg-white/[0.08] shadow-[0_0_20px_rgba(255,255,255,0.05)] ring-1 ring-white/10'
                                 : 'border-white/[0.04] bg-transparent hover:border-white/20 hover:bg-white/[0.03]'
                                 }`}
                             >
                               {plan.badge && (
-                                <span className={`absolute -top-1.5 right-3 text-[7px] font-bold px-1.5 py-px rounded ${key === 'balanced' ? 'bg-red-500 text-white' : 'bg-white/10 text-slate-400'}`}>
+                                <span className={`absolute -top-1.5 right-3 text-[8px] font-bold px-1.5 py-px rounded ${key === 'balanced' ? 'bg-red-500 text-white' : 'bg-white/10 text-slate-400'}`}>
                                   {plan.badge}
                                 </span>
                               )}
 
                               {/* Price + Label row */}
-                              <div className="flex items-center gap-1.5 mb-2">
-                                <div className={`w-3 h-3 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'border-white bg-white' : 'border-slate-700'}`}>
-                                  {isSelected && <div className="w-1 h-1 rounded-full bg-[#0c0f16]"></div>}
+                              <div className="flex items-center gap-2 mb-2.5">
+                                <div className={`w-3.5 h-3.5 rounded-full border-[1.5px] flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'border-white bg-white' : 'border-slate-700'}`}>
+                                  {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-[#0c0f16]"></div>}
                                 </div>
-                                <span className={`font-bold text-[15px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>${plan.price}</span>
-                                <span className="text-[9px] text-slate-400 font-normal">/mo</span>
+                                <span className={`font-bold text-[18px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>${plan.price}</span>
+                                <span className="text-[11px] text-slate-400 font-normal">/mo</span>
                               </div>
-                              <p className={`font-bold text-[11px] mb-2 ${isSelected ? 'text-white' : 'text-white/60'}`}>{plan.label}</p>
+                              <p className={`font-bold text-[13px] mb-2.5 ${isSelected ? 'text-white' : 'text-white/60'}`}>{plan.label}</p>
 
                               {/* Model Tags - vertical list */}
-                              <div className="flex flex-wrap gap-1 mb-2">
+                              <div className="flex flex-wrap gap-1 mb-3">
                                 {plan.models.map((m, i) => (
-                                  <span key={i} className={`text-[8px] font-mono px-1 py-0.5 rounded ${isSelected ? 'bg-white/[0.08] text-slate-300' : 'bg-white/[0.05] text-slate-400'}`}>
+                                  <span key={i} className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${isSelected ? 'bg-white/[0.08] text-slate-300' : 'bg-white/[0.05] text-slate-400'}`}>
                                     {m}
                                   </span>
                                 ))}
@@ -826,13 +826,13 @@ export function PrakasaAPIApp() {
 
                               {/* Includes previous */}
                               {'includes' in plan && plan.includes && (
-                                <p className={`text-[9px] font-medium mb-1 ${isSelected ? 'text-slate-400' : 'text-slate-500'}`}>{plan.includes}</p>
+                                <p className={`text-[10px] font-medium mb-1.5 ${isSelected ? 'text-slate-400' : 'text-slate-500'}`}>{plan.includes}</p>
                               )}
 
                               {/* Features */}
-                              <div className="mt-auto pt-1 space-y-0.5">
+                              <div className="mt-auto pt-1 space-y-1">
                                 {plan.features?.map((f, i) => (
-                                  <p key={i} className={`text-[9px] font-medium ${isSelected ? 'text-slate-400' : 'text-slate-700'}`}>
+                                  <p key={i} className={`text-[10px] font-medium ${isSelected ? 'text-slate-400' : 'text-slate-700'}`}>
                                     {key === 'eco' && i === 1 ? '∞ ' : ''}{key === 'balanced' && i === 0 ? '🧠 ' : ''}{key === 'pro' && i === 1 ? '⚡ ' : ''}{f}
                                   </p>
                                 ))}
@@ -847,32 +847,32 @@ export function PrakasaAPIApp() {
                     <div className="border-t border-white/[0.04]"></div>
 
                     {/* Step 3: Connect bot - compact */}
-                    <div className="space-y-2.5">
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-5 h-5 bg-white/[0.1] rounded text-[10px] font-bold text-slate-200 flex items-center justify-center">3</span>
-                        <span className="text-white font-bold text-[13px]">{lang === 'zh' ? '连接机器人' : 'Connect bot'}</span>
+                    <div className="space-y-3.5">
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 bg-white/[0.1] rounded text-[11px] font-bold text-slate-200 flex items-center justify-center">3</span>
+                        <span className="text-white font-bold text-[15px]">{lang === 'zh' ? '连接机器人' : 'Connect bot'}</span>
                       </div>
 
                       {!tgConnected ? (
-                        <div className="flex gap-2">
+                        <div className="flex gap-3">
                           <button
                             onClick={() => setShowTgModal(true)}
-                            className="flex-1 py-2.5 bg-white/[0.03] border border-white/[0.08] text-slate-400 rounded-xl font-medium text-[12px] hover:bg-white/[0.06] hover:border-white/20 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group/btn active:scale-[0.98]"
+                            className="flex-1 py-3 bg-white/[0.03] border border-white/[0.08] text-slate-400 rounded-xl font-medium text-[14px] hover:bg-white/[0.06] hover:border-white/20 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group/btn active:scale-[0.98]"
                           >
-                            <Send size={12} className="text-[#1a9edb] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                            <Send size={14} className="text-[#1a9edb] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                             Telegram
                           </button>
-                          <div className="flex-1 py-2.5 border border-white/[0.04] rounded-xl text-[12px] font-medium text-slate-400 flex items-center justify-center gap-2 opacity-60 cursor-not-allowed">
-                            <MessageCircle size={12} />
+                          <div className="flex-1 py-3 border border-white/[0.04] rounded-xl text-[14px] font-medium text-slate-400 flex items-center justify-center gap-2 opacity-60 cursor-not-allowed">
+                            <MessageCircle size={14} />
                             Discord
                           </div>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-3 p-2.5 bg-white/[0.02] border border-emerald-500/20 rounded-xl">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <div className="flex items-center gap-4 p-3.5 bg-white/[0.02] border border-emerald-500/20 rounded-xl">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                           <div className="flex-1 min-w-0">
-                            <p className="text-white font-medium text-[12px]">{lang === 'zh' ? 'Telegram 已连接' : 'Telegram connected'}</p>
-                            <p className="text-slate-600 text-[9px] font-mono truncate">
+                            <p className="text-white font-medium text-[14px]">{lang === 'zh' ? 'Telegram 已连接' : 'Telegram connected'}</p>
+                            <p className="text-slate-600 text-[10px] font-mono truncate">
                               {tgToken.slice(0, 8)}···{tgToken.slice(-6)}
                             </p>
                           </div>
@@ -880,7 +880,7 @@ export function PrakasaAPIApp() {
                             onClick={() => { setTgConnected(false); setTgToken(''); }}
                             className="text-slate-700 hover:text-slate-400 transition-colors"
                           >
-                            <X size={12} />
+                            <X size={14} />
                           </button>
                         </div>
                       )}
@@ -890,24 +890,24 @@ export function PrakasaAPIApp() {
                     <div className="border-t border-white/[0.04]"></div>
 
                     {/* Step 4: Deploy - compact */}
-                    <div className="space-y-2.5">
+                    <div className="space-y-3.5">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
-                          <span className={`w-5 h-5 rounded text-[10px] font-bold flex items-center justify-center ${tgConnected ? 'bg-white/[0.1] text-slate-200' : 'bg-white/[0.05] text-slate-500'}`}>4</span>
-                          <span className={`font-bold text-[13px] ${tgConnected ? 'text-white' : 'text-slate-400'}`}>{lang === 'zh' ? '确认部署' : 'Deploy'}</span>
-                        </div>
                         <div className="flex items-center gap-3">
-                          <div className="text-right text-[10px]">
+                          <span className={`w-6 h-6 rounded text-[11px] font-bold flex items-center justify-center ${tgConnected ? 'bg-white/[0.1] text-slate-200' : 'bg-white/[0.05] text-slate-500'}`}>4</span>
+                          <span className={`font-bold text-[15px] ${tgConnected ? 'text-white' : 'text-slate-400'}`}>{lang === 'zh' ? '确认部署' : 'Deploy'}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <div className="text-right text-[11px]">
                             <p className={`${tgConnected ? 'text-slate-300' : 'text-slate-500'} font-medium`}>{lang === 'zh' ? '机器' : 'Machine'} ${machinePrice}{modelPlan !== 'none' ? ` + ${selectedModel.label} $${selectedModel.price}` : ''}</p>
                           </div>
-                          <p className="text-white text-xl font-bold tracking-tight">
-                            ${totalPrice}<span className="text-slate-600 text-[10px] font-normal">/mo</span>
+                          <p className="text-white text-2xl font-bold tracking-tight">
+                            ${totalPrice}<span className="text-slate-600 text-[12px] font-normal">/mo</span>
                           </p>
                         </div>
                       </div>
                       <button
                         disabled={!tgConnected}
-                        className={`w-full py-3 rounded-xl font-bold text-[13px] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-[0.97] ${tgConnected
+                        className={`w-full py-4 rounded-xl font-bold text-[15px] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-[0.97] ${tgConnected
                           ? 'bg-gradient-to-r from-white to-slate-200 text-[#08090e] hover:shadow-white/5'
                           : 'bg-white/[0.03] text-slate-700 border border-white/[0.04] cursor-not-allowed'
                           }`}
